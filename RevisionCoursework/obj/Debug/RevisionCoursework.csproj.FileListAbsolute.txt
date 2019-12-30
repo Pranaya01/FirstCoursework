@@ -1,0 +1,12 @@
+C:\Users\Admin\source\repos\RevisionCoursework\bin\Debug\RevisionCoursework.exe.config
+C:\Users\Admin\source\repos\RevisionCoursework\bin\Debug\RevisionCoursework.exe
+C:\Users\Admin\source\repos\RevisionCoursework\bin\Debug\RevisionCoursework.pdb
+C:\Users\Admin\source\repos\RevisionCoursework\obj\Debug\RevisionCoursework.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\RevisionCoursework\obj\Debug\RevisionCoursework.Properties.Resources.resources
+C:\Users\Admin\source\repos\RevisionCoursework\obj\Debug\RevisionCoursework.StudentForm.resources
+C:\Users\Admin\source\repos\RevisionCoursework\obj\Debug\RevisionCoursework.csproj.GenerateResource.cache
+C:\Users\Admin\source\repos\RevisionCoursework\obj\Debug\RevisionCoursework.exe
+C:\Users\Admin\source\repos\RevisionCoursework\obj\Debug\RevisionCoursework.pdb
+C:\Users\Admin\source\repos\RevisionCoursework\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Admin\source\repos\RevisionCoursework\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Admin\source\repos\RevisionCoursework\obj\Debug\RevisionCoursework.csproj.CopyComplete
