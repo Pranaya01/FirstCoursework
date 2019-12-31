@@ -30,7 +30,7 @@ namespace FirstCourseWork
         }
     public StudentRegister Edit(int studentId)
         {
-            //new object name
+            
             StudentRegister studRegister = new StudentRegister();
             return studRegister;
         }

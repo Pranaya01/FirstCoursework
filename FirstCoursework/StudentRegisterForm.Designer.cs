@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lblStudentRegisterForm = new System.Windows.Forms.Label();
             this.lblFirstName = new System.Windows.Forms.Label();
             this.lblLastName = new System.Windows.Forms.Label();
@@ -53,7 +56,12 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.dgStudentData = new System.Windows.Forms.DataGridView();
+            this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dgStudentData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblStudentRegisterForm
@@ -161,6 +169,7 @@
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(121, 20);
             this.txtFirstName.TabIndex = 11;
+            this.txtFirstName.TextChanged += new System.EventHandler(this.Ctrl_Text);
             // 
             // txtLastName
             // 
@@ -168,6 +177,7 @@
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(121, 20);
             this.txtLastName.TabIndex = 12;
+            this.txtLastName.TextChanged += new System.EventHandler(this.Ctrl_Text);
             // 
             // txtAddress
             // 
@@ -175,6 +185,7 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(121, 20);
             this.txtAddress.TabIndex = 13;
+            this.txtAddress.TextChanged += new System.EventHandler(this.Ctrl_Text);
             // 
             // txtEmail
             // 
@@ -182,6 +193,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(121, 20);
             this.txtEmail.TabIndex = 14;
+            this.txtEmail.TextChanged += new System.EventHandler(this.Ctrl_Text);
             // 
             // txtContactNo
             // 
@@ -189,6 +201,7 @@
             this.txtContactNo.Name = "txtContactNo";
             this.txtContactNo.Size = new System.Drawing.Size(121, 20);
             this.txtContactNo.TabIndex = 15;
+            this.txtContactNo.TextChanged += new System.EventHandler(this.Ctrl_Text);
             // 
             // dtDateOfBirth
             // 
@@ -205,8 +218,9 @@
             "Female"});
             this.cbGender.Location = new System.Drawing.Point(85, 210);
             this.cbGender.Name = "cbGender";
-            this.cbGender.Size = new System.Drawing.Size(121, 21);
+            this.cbGender.Size = new System.Drawing.Size(130, 21);
             this.cbGender.TabIndex = 17;
+            this.cbGender.TextChanged += new System.EventHandler(this.Ctrl_Text);
             // 
             // cbCourseEnroll
             // 
@@ -217,8 +231,9 @@
             "Networks and IT Security"});
             this.cbCourseEnroll.Location = new System.Drawing.Point(84, 239);
             this.cbCourseEnroll.Name = "cbCourseEnroll";
-            this.cbCourseEnroll.Size = new System.Drawing.Size(121, 21);
+            this.cbCourseEnroll.Size = new System.Drawing.Size(131, 21);
             this.cbCourseEnroll.TabIndex = 18;
+            this.cbCourseEnroll.TextChanged += new System.EventHandler(this.Ctrl_Text);
             // 
             // dtRegisterDate
             // 
@@ -241,7 +256,7 @@
             // btnUpdate
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnUpdate.Location = new System.Drawing.Point(87, 308);
+            this.btnUpdate.Location = new System.Drawing.Point(198, 308);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 21;
@@ -252,36 +267,69 @@
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.Red;
-            this.btnDelete.Location = new System.Drawing.Point(168, 308);
+            this.btnDelete.Location = new System.Drawing.Point(6, 337);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 22;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Visible = false;
             // 
             // btnClear
             // 
             this.btnClear.BackColor = System.Drawing.Color.Yellow;
-            this.btnClear.Location = new System.Drawing.Point(249, 308);
+            this.btnClear.Location = new System.Drawing.Point(102, 308);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 23;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // dgStudentData
             // 
             this.dgStudentData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgStudentData.Location = new System.Drawing.Point(348, 39);
+            this.dgStudentData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Edit,
+            this.Delete});
+            this.dgStudentData.Location = new System.Drawing.Point(126, 345);
             this.dgStudentData.Name = "dgStudentData";
-            this.dgStudentData.Size = new System.Drawing.Size(824, 292);
+            this.dgStudentData.Size = new System.Drawing.Size(824, 181);
             this.dgStudentData.TabIndex = 24;
+            this.dgStudentData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgStudentData_CellContentClick);
+            // 
+            // Edit
+            // 
+            this.Edit.HeaderText = "Edit";
+            this.Edit.Name = "Edit";
+            // 
+            // Delete
+            // 
+            this.Delete.HeaderText = "Delete";
+            this.Delete.Name = "Delete";
+            // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(576, 52);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(432, 260);
+            this.chart1.TabIndex = 25;
+            this.chart1.Text = "chart1";
             // 
             // StudentRegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 499);
+            this.ClientSize = new System.Drawing.Size(1184, 538);
+            this.Controls.Add(this.chart1);
             this.Controls.Add(this.dgStudentData);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnDelete);
@@ -309,7 +357,9 @@
             this.Controls.Add(this.lblStudentRegisterForm);
             this.Name = "StudentRegisterForm";
             this.Text = "Student Register Form";
+            this.TextChanged += new System.EventHandler(this.Ctrl_Text);
             ((System.ComponentModel.ISupportInitialize)(this.dgStudentData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,6 +392,10 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.DataGridView dgStudentData;
+        private System.Windows.Forms.DataGridViewButtonColumn Edit;
+        private System.Windows.Forms.DataGridViewButtonColumn Delete;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
